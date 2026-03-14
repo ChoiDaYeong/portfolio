@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PixelPusher</title>
   <meta name="description" content="캐릭터 일러스트 & 콘셉트 디자인. 오리지널 작업과 팬아트, 2019년부터.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2" as="font" type="font/woff2" crossorigin>
   <style>
     @font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-5Medium.woff2') format('woff2');font-weight:500;font-display:swap;}
     @font-face{font-family:'Paperlogy';src:url('https://cdn.jsdelivr.net/gh/projectnoonnu/2408-3@1.0/Paperlogy-9Black.woff2') format('woff2');font-weight:900;font-display:swap;}
@@ -21,11 +24,11 @@
 
     /* ── NAV ── */
     nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(248,247,244,0.93);backdrop-filter:blur(12px);border-bottom:0.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 32px;height:var(--nav-h);}
-    .nav-logo svg{display:block;height:26px;width:auto;}
     .nav-anchors{display:flex;}
     .nav-anchor{font-size:0.75em;font-weight:500;letter-spacing:0.1em;color:var(--muted);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:var(--f);padding:0 18px;height:var(--nav-h);display:flex;align-items:center;transition:color 0.2s,border-color 0.2s;text-decoration:none;}
     .nav-anchor:hover{color:var(--text);}
     .nav-anchor.active{color:var(--accent-dark);border-bottom-color:var(--accent);}
+    .nav-title{font-weight:900;font-size:1em;color:var(--accent);letter-spacing:0.04em;border-bottom:2px solid transparent !important;}
 
     /* ── PAGE WRAP ── */
     .page-wrap{padding-top:var(--nav-h);}
@@ -38,14 +41,14 @@
     .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
     .slide-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(248,247,244,0.94) 0%,rgba(248,247,244,0.35) 55%,transparent 100%);}
     .slide-fixed{position:absolute;inset:0;display:flex;align-items:flex-end;padding:0 32px 52px;z-index:5;pointer-events:none;}
-    .slide-content{pointer-events:auto;max-width:640px;}
+    .slide-content{pointer-events:auto;}
     .slide-logo{display:block;height:150px;width:auto;margin-bottom:20px;}
     .slide-eyebrow{font-size:0.65em;letter-spacing:0.2em;color:var(--accent-dark);margin-bottom:28px;display:block;text-transform:uppercase;}
     .landing-ctas{display:flex;flex-direction:column;gap:14px;}
     .cta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
     .cta-row-label{font-size:0.65em;letter-spacing:0.18em;color:var(--muted);min-width:48px;text-transform:uppercase;}
     .cta-divider{width:100%;height:0.5px;background:var(--border);}
-    .cta-btn{font-size:0.75em;font-weight:500;letter-spacing:0.08em;padding:9px 20px;border:0.5px solid;cursor:pointer;font-family:var(--f);transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
+    .cta-btn{font-size:0.75em;font-weight:500;letter-spacing:0;padding:9px 20px;border:0.5px solid;cursor:pointer;font-family:var(--f);transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
     .cta-primary{border-color:var(--accent-dark);color:var(--accent-dark);background:none;}
     .cta-primary:hover{background:var(--accent);border-color:var(--accent);color:var(--bg);}
     .cta-secondary{border-color:var(--border);color:var(--muted);background:none;}
@@ -53,9 +56,11 @@
     .cta-ghost{border-color:var(--border);color:var(--muted);background:none;font-size:0.7em;padding:7px 14px;}
     .cta-ghost:hover{border-color:var(--accent);color:var(--accent-dark);}
     .cta-btn svg{width:14px;height:14px;flex-shrink:0;}
-    .sns-btn{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border:0.5px solid var(--border);background:none;cursor:pointer;text-decoration:none;transition:border-color 0.2s,background 0.2s;}
-    .sns-btn svg{width:16px;height:16px;fill:var(--muted);transition:fill 0.2s;}
-    .sns-btn:hover{border-color:var(--accent);background:rgba(117,214,166,0.08);}
+    .links-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+    .sns-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:7px 14px;border:0.5px solid var(--border);background:none;cursor:pointer;text-decoration:none;transition:border-color 0.2s,background 0.2s;font-family:var(--f);font-size:0.7em;font-weight:500;color:var(--muted);}
+    .sns-btn svg{width:14px;height:14px;fill:var(--muted);transition:fill 0.2s;flex-shrink:0;}
+    .sns-label{white-space:nowrap;}
+    .sns-btn:hover{border-color:var(--accent);background:rgba(117,214,166,0.08);color:var(--accent-dark);}
     .sns-btn:hover svg{fill:var(--accent-dark);}
     .carousel-dots{position:absolute;bottom:20px;right:32px;display:flex;gap:6px;z-index:10;}
     .carousel-dot{width:20px;height:2px;background:var(--border);cursor:pointer;transition:background 0.3s,width 0.3s;border:none;}
@@ -73,10 +78,11 @@
     .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
     @media(max-width:1280px){.gallery-grid{grid-template-columns:repeat(3,1fr);}}
     @media(max-width:640px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
-    .gallery-item{background:var(--bg2);aspect-ratio:3/4;position:relative;cursor:pointer;overflow:hidden;}
+    .gallery-item{background:var(--bg2);aspect-ratio:3/4;position:relative;cursor:pointer;overflow:hidden;contain:layout style;}
     .gallery-item:hover .g-overlay{opacity:1;}
-    .gallery-item:hover .g-thumb-bg{transform:scale(1.04);}
-    .g-thumb-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform 0.4s ease;}
+    .gallery-item:hover .g-thumb-img{transform:scale(1.04);}
+    .g-thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;}
+    .g-thumb-color{position:absolute;inset:0;}
     .g-thumb-fallback{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;}
     .g-label{font-size:0.75em;color:var(--muted);font-weight:500;line-height:1.4;}
     .g-title{font-weight:900;font-size:1em;color:var(--text);display:block;margin-bottom:2px;}
@@ -115,11 +121,11 @@
     .comm-center{max-width:600px;margin:0 auto;padding:48px 32px;}
     .comm-center>p{font-size:1em;color:var(--text);line-height:1.4;margin-bottom:20px;}
     .mail-actions{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap;}
-    .mail-copy-btn{font-size:0.8em;font-weight:500;letter-spacing:0.06em;padding:10px 16px;border:0.5px solid var(--border);background:none;color:var(--text);cursor:pointer;font-family:var(--f);transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;}
-    .mail-copy-btn svg{width:14px;height:14px;}
-    .mail-copy-btn:hover{border-color:var(--accent);color:var(--accent-dark);}
-    .copy-feedback{font-size:0.75em;color:var(--accent-dark);opacity:0;transition:opacity 0.3s;margin-left:2px;}
-    .copy-feedback.show{opacity:1;}
+    .mail-copy-link{display:inline-flex;align-items:center;gap:4px;color:var(--accent-dark);text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer;font-weight:500;transition:color 0.2s;white-space:nowrap;}
+    .mail-copy-link svg{flex-shrink:0;}
+    .mail-copy-link:hover{color:var(--accent);}
+    .copy-inline-feedback{font-size:0.8em;color:var(--accent-dark);font-weight:500;margin-left:4px;opacity:0;transition:opacity 0.3s;pointer-events:none;}
+    .copy-inline-feedback.show{opacity:1;}
     .contact-form{display:flex;flex-direction:column;gap:12px;}
     .form-row{display:flex;flex-direction:column;gap:4px;}
     .form-label{font-size:0.9em;color:var(--muted);letter-spacing:0.04em;}
@@ -130,6 +136,9 @@
     .form-submit{font-family:var(--f);font-weight:500;font-size:0.85em;letter-spacing:0.1em;padding:12px 28px;border:0.5px solid var(--accent-dark);color:var(--accent-dark);background:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;}
     .form-submit svg{width:14px;height:14px;}
     .form-submit:hover{background:var(--accent);border-color:var(--accent);color:var(--bg);}
+    .form-error{margin-top:12px;font-size:0.88em;color:#c0392b;line-height:1.5;}
+    .form-error a{color:#c0392b;font-weight:500;text-decoration:underline;text-decoration-style:dotted;text-underline-offset:3px;cursor:pointer;}
+    .form-error a:hover{color:var(--accent-dark);}
 
     /* ── MODAL ── */
     .modal-overlay{position:fixed;inset:0;z-index:500;background:rgba(2,42,85,0.18);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s;}
@@ -160,6 +169,10 @@
       .lb-info{width:100%;border-left:none;border-top:0.5px solid var(--border);padding:20px;}
       .lb-nav{display:none;}
       footer{flex-direction:column;gap:6px;align-items:flex-start;padding:20px;}
+      .links-row{flex-direction:column;align-items:stretch;gap:8px;}
+      .links-row .cta-row-label{margin-bottom:2px;}
+      .sns-btn,.cta-btn.cta-ghost,.cta-btn.cta-secondary{display:flex;width:100%;justify-content:center;padding:11px 16px;font-size:0.84em;}
+      .sns-btn svg{width:16px;height:16px;}
     }
   </style>
 </head>
@@ -206,11 +219,8 @@
 
 <!-- ── NAV ── -->
 <nav>
-  <span class="nav-logo">
-    <svg viewBox="0 0 175 80" style="height:26px;width:auto;display:block;"><use href="#pp-logo"/></svg>
-  </span>
+  <button class="nav-anchor nav-title" data-target="landing">PixelPusher</button>
   <div class="nav-anchors">
-    <button class="nav-anchor active" data-target="landing">Home</button>
     <button class="nav-anchor" data-target="gallery">Gallery</button>
     <button class="nav-anchor" data-target="contact">Contact</button>
   </div>
@@ -224,18 +234,7 @@
     <div class="slide-fixed">
       <div class="slide-content">
         <svg class="slide-logo" viewBox="0 0 175 80"><use href="#pp-logo"/></svg>
-        <span class="slide-eyebrow">Character Illustration &amp; Concept Design</span>
         <div class="landing-ctas">
-          <div class="cta-row">
-            <span class="cta-row-label">Portfolio</span>
-            <button class="cta-btn cta-primary" onclick="goTo('gallery')">
-              <svg width="14" height="14" viewBox="0 0 16 16"><use href="#ic-gallery"/></svg>갤러리 보기
-            </button>
-            <button class="cta-btn cta-secondary" onclick="goTo('contact')">
-              <svg width="14" height="14" viewBox="0 0 16 16"><use href="#ic-mail"/></svg>외주 문의
-            </button>
-          </div>
-          <div class="cta-divider"></div>
           <div id="landing-links"></div>
         </div>
       </div>
@@ -253,8 +252,9 @@
         <h2>GALLERY</h2>
         <div class="filter-bar">
           <button class="filter-btn active" onclick="filterGallery('all',this)">전체</button>
-          <button class="filter-btn" onclick="filterGallery('original',this)">오리지널</button>
-          <button class="filter-btn" onclick="filterGallery('fanart',this)">팬아트</button>
+          <button class="filter-btn" onclick="filterGallery('illustration',this)">일러스트</button>
+          <button class="filter-btn" onclick="filterGallery('uiux',this)">UI/UX</button>
+          <button class="filter-btn" onclick="filterGallery('graphic',this)">그래픽 디자인</button>
         </div>
       </div>
       <div class="gallery-grid" id="gallery-grid"></div>
@@ -266,15 +266,16 @@
         <h2>CONTACT</h2>
       </div>
       <div class="comm-center">
-        <p>단가, 일정, 작업 범위는 메일로 상세 협의 가능합니다.</p>
-        <div class="mail-actions">
-          <button class="mail-copy-btn" onclick="copyMail()">
-            <svg width="14" height="14" viewBox="0 0 16 16"><use href="#ic-copy"/></svg>
-            메일 주소 복사
-            <span class="copy-feedback" id="copy-feedback">복사됨</span>
-          </button>
-        </div>
+        <p>단가, 일정, 작업 범위는 메일로 상세 협의 가능합니다.<br>
+        아래의 폼을 작성하시거나,
+        <a class="mail-copy-link" onclick="copyMailInline(this)" href="#">
+          <svg width="12" height="12" viewBox="0 0 16 16"><use href="#ic-copy"/></svg>메일 주소만 직접 복사
+        </a>해서 보내셔도 됩니다.
+        <span class="copy-inline-feedback" id="copy-inline-feedback">복사 완료!</span>
+        </p>
         <div class="contact-form">
+          <!-- honeypot: 봇 차단용 숨김 필드 -->
+          <input type="text" id="f-honey" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off">
           <div class="form-row">
             <label class="form-label">성함 — 보내시는 분의 이름</label>
             <input class="form-input" id="f-name" type="text" placeholder="홍길동">
@@ -297,13 +298,14 @@
               메일 보내기
             </button>
           </div>
+          <div class="form-error" id="form-error" style="display:none;"></div>
         </div>
         <div id="contact-links"></div>
       </div>
     </section>
 
     <footer>
-      <span>© 2025 PixelPusher — All rights reserved</span>
+      <span>Copyright 2026. PixelPusher All rights reserved.</span>
       <span>CC BY-NC-ND 4.0</span>
     </footer>
   </div>
@@ -358,36 +360,44 @@
   const TW_SVG=`<svg viewBox="0 0 24 24" width="16" height="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.747l7.73-8.835L1.254 2.25H8.08l4.253 5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>`;
   function ic(id){return `<svg width="14" height="14" viewBox="0 0 16 16"><use href="#${id}"/></svg>`;}
 
-  function buildLinksHTML(){
-    return `<div class="cta-row" style="flex-wrap:wrap;gap:10px;">
+  function buildLinksHTML(showMailBtn=true){
+    return `<div class="links-row">
       <span class="cta-row-label">Links</span>
-      <a class="sns-btn" href="https://www.instagram.com/pixelpu5her/" target="_blank" title="Instagram">${IG_SVG}</a>
-      <a class="sns-btn" href="https://x.com/pixelpu5her" target="_blank" title="Twitter / X">${TW_SVG}</a>
+      <a class="sns-btn" href="https://www.instagram.com/pixelpu5her/" target="_blank">${IG_SVG}<span class="sns-label">Instagram</span></a>
+      <a class="sns-btn" href="https://x.com/pixelpu5her" target="_blank">${TW_SVG}<span class="sns-label">X (Twitter)</span></a>
       <a class="cta-btn cta-ghost" href="https://witchform.com/p/IRNLUtpSyy" target="_blank">${ic('ic-cart')} WitchForm</a>
       <a class="cta-btn cta-ghost" href="https://artmug.kr/index.php?channel=view&uid=28269" target="_blank">${ic('ic-cart')} ArtMug</a>
+      ${showMailBtn?`<button class="cta-btn cta-secondary" onclick="goTo('contact')">${ic('ic-mail')} 메일 문의</button>`:''}
     </div>`;
   }
 
-  /* ── 캐러셀 — 배경만 전환 ── */
-  const slideBgs=["#ede8e0","#e8e4ec","#e4eaee","#edeae4"];
+  /* ── 캐러셀 ── */
+  const slideData=[
+    {image:"img/thumb_111.webp",color:"#ede8e0"},
+    {image:"",color:"#e8e4ec"},
+    {image:"",color:"#e4eaee"},
+  ];
   let currentSlide=0, carouselTimer;
   const SLIDE_DURATION=8000;
 
   function buildCarousel(){
     const cont=document.getElementById('carousel-slides');
     const dotsEl=document.getElementById('carousel-dots');
-    slideBgs.forEach((bg,i)=>{
+    slideData.forEach((s,i)=>{
       const el=document.createElement('div');
       el.className='carousel-slide'+(i===0?' active':'');
-      el.innerHTML=`<div class="slide-bg" style="background-color:${bg};"></div>`;
+      const bgStyle=s.image
+        ?`background-color:${s.color};background-image:url(${s.image});background-size:cover;background-position:center;`
+        :`background-color:${s.color};`;
+      el.innerHTML=`<div class="slide-bg" style="${bgStyle}"></div>`;
       cont.appendChild(el);
       const dot=document.createElement('button');
       dot.className='carousel-dot'+(i===0?' active':'');
       dot.addEventListener('click',()=>goToSlide(i));
       dotsEl.appendChild(dot);
     });
-    document.getElementById('landing-links').innerHTML=buildLinksHTML();
-    document.getElementById('contact-links').innerHTML=`<div style="margin-top:36px;padding-top:28px;border-top:0.5px solid var(--border);">${buildLinksHTML()}</div>`;
+    document.getElementById('landing-links').innerHTML=buildLinksHTML(true);
+    document.getElementById('contact-links').innerHTML=`<div style="margin-top:36px;padding-top:28px;border-top:0.5px solid var(--border);">${buildLinksHTML(false)}</div>`;
   }
 
   function goToSlide(idx){
@@ -395,7 +405,7 @@
     const allD=document.querySelectorAll('.carousel-dot');
     allS[currentSlide].classList.remove('active');
     allD[currentSlide].classList.remove('active');
-    currentSlide=(idx+slideBgs.length)%slideBgs.length;
+    currentSlide=(idx+slideData.length)%slideData.length;
     allS[currentSlide].classList.add('active');
     allD[currentSlide].classList.add('active');
     resetProgress();
@@ -410,38 +420,40 @@
 
   /* ── 갤러리 데이터 ──
      각 항목 편집 방법:
-       thumb : 썸네일 이미지 URL (비워두면 배경색 표시)
-       image : 라이트박스 원본 이미지 URL (비워두면 플레이스홀더)
-       tags  : ['able-shop'] 추가 시 구매하기 버튼 노출
+       thumb   : 썸네일 파일명 (img/ 폴더 기준, 예: matilda_thumb.webp)
+       image   : 원본 파일명  (img/ 폴더 기준, 예: matilda.webp)
+       type    : 'illustration' | 'uiux' | 'graphic'
+       tags    : ['able-shop'] 추가 시 구매하기 버튼 노출
        shopUrl : 구매 링크 URL
-       desc  : 라이트박스 상세 설명
+       desc    : 라이트박스 상세 설명
+       ※ dashboard를 통해 편집하는 것을 권장합니다.
   */
   const works=[
-    {title:"Matilda & Nikita",sub:"GakuinCity Original",year:"2025",type:"original",color:"#e8e4ec",
+    {title:"Matilda & Nikita",sub:"GakuinCity Original",year:"2025",type:"illustration",color:"#e8e4ec",
      thumb:"",image:"",tags:[],shopUrl:"",
      desc:"GakuinCity 세계관의 오리지널 캐릭터 마틸다와 니키타. 두 인물의 대비되는 성격을 의상과 포즈로 표현했습니다."},
-    {title:"High School Girl",sub:"Original Concept",year:"2024",type:"original",color:"#ede8e0",
+    {title:"High School Girl",sub:"Original Concept",year:"2024",type:"illustration",color:"#ede8e0",
      thumb:"",image:"",tags:["able-shop"],shopUrl:"https://witchform.com/p/IRNLUtpSyy",
      desc:"학원물 장르를 배경으로 한 오리지널 콘셉트 디자인."},
-    {title:"C&C",sub:"Blue Archive",year:"2024",type:"fanart",color:"#e4eaee",
+    {title:"C&C",sub:"Blue Archive",year:"2024",type:"illustration",color:"#e4eaee",
      thumb:"",image:"",tags:[],shopUrl:"",desc:"블루 아카이브의 C&C 팬아트."},
-    {title:"Hubuki",sub:"Blue Archive",year:"2024",type:"fanart",color:"#eeeae4",
+    {title:"Hubuki",sub:"Blue Archive",year:"2024",type:"illustration",color:"#eeeae4",
      thumb:"",image:"",tags:[],shopUrl:"",desc:"블루 아카이브 후부키 팬아트."},
-    {title:"Pramanix",sub:"Arknights",year:"2024",type:"fanart",color:"#e4eeea",
+    {title:"Pramanix",sub:"Arknights",year:"2024",type:"illustration",color:"#e4eeea",
      thumb:"",image:"",tags:[],shopUrl:"",desc:"명일방주 프라마닉스 팬아트."},
-    {title:"Hakos Baelz",sub:"Hololive EN",year:"2022",type:"fanart",color:"#eee4e4",
+    {title:"Hakos Baelz",sub:"Hololive EN",year:"2022",type:"illustration",color:"#eee4e4",
      thumb:"",image:"",tags:[],shopUrl:"",desc:"홀로라이브 EN Hakos Baelz 팬아트."},
-    {title:"Bing Hayu",sub:"LUV DIA",year:"2022",type:"fanart",color:"#e4e8ee",
+    {title:"Bing Hayu",sub:"LUV DIA",year:"2022",type:"illustration",color:"#e4e8ee",
      thumb:"",image:"",tags:[],shopUrl:"",desc:"LUV DIA 빙하유 팬아트."},
-    {title:"Megu",sub:"Blue Archive",year:"2023",type:"fanart",color:"#eae4ee",
+    {title:"Megu",sub:"Blue Archive",year:"2023",type:"illustration",color:"#eae4ee",
      thumb:"",image:"",tags:[],shopUrl:"",desc:"블루 아카이브 메구 팬아트."},
-    {title:"War Mage",sub:"Original Concept",year:"2019",type:"original",color:"#eee8e4",
+    {title:"War Mage",sub:"Original Concept",year:"2019",type:"illustration",color:"#eee8e4",
      thumb:"",image:"",tags:[],shopUrl:"",desc:"전쟁 마법사 테마 오리지널 콘셉트 아트."},
-    {title:"Dessert Girl",sub:"Original Concept",year:"2022",type:"original",color:"#eeeae4",
+    {title:"Dessert Girl",sub:"Original Concept",year:"2022",type:"illustration",color:"#eeeae4",
      thumb:"",image:"",tags:[],shopUrl:"",desc:"디저트 모티프 오리지널 캐릭터 디자인."},
-    {title:"Hu Tao",sub:"Genshin Impact",year:"2023",type:"fanart",color:"#eee4e8",
+    {title:"Hu Tao",sub:"Genshin Impact",year:"2023",type:"illustration",color:"#eee4e8",
      thumb:"",image:"",tags:[],shopUrl:"",desc:"원신 호두 팬아트."},
-    {title:"Shiroko",sub:"Blue Archive",year:"2023",type:"fanart",color:"#e4eeee",
+    {title:"Shiroko",sub:"Blue Archive",year:"2023",type:"illustration",color:"#e4eeee",
      thumb:"",image:"",tags:[],shopUrl:"",desc:"블루 아카이브 시로코 팬아트."},
   ];
 
@@ -453,7 +465,8 @@
     filteredWorks=filter==='all'?[...works]:works.filter(w=>w.type===filter);
     document.getElementById('gallery-grid').innerHTML=filteredWorks.map((w,i)=>`
       <div class="gallery-item" onclick="openLightbox(${i})">
-        <div class="g-thumb-bg" style="background-color:${w.color};${w.thumb?'background-image:url('+w.thumb+');':''}"></div>
+        <div class="g-thumb-color" style="background-color:${w.color};"></div>
+        ${w.thumb?`<img class="g-thumb-img" src="${w.thumb}" alt="${w.title}" loading="lazy" decoding="async">`:''}
         <div class="g-thumb-fallback">
           <div class="g-label"><span class="g-title">${w.title}</span>${w.sub}<br>${w.year}</div>
         </div>
@@ -486,7 +499,8 @@
   }
   function updateLightbox(){
     const w=filteredWorks[lbIndex];
-    document.getElementById('lb-tag').textContent=w.type==='original'?'Original Work':'Fan Art';
+    const typeLabels={illustration:'Original Artwork',uiux:'UI/UX Design',graphic:'Graphic Design'};
+    document.getElementById('lb-tag').textContent=typeLabels[w.type]||'Original Artwork';
     document.getElementById('lb-title').textContent=w.title;
     document.getElementById('lb-sub').textContent=w.sub;
     document.getElementById('lb-desc').textContent=w.desc||'';
@@ -498,7 +512,7 @@
     const ph=document.getElementById('lb-placeholder');
     ph.style.background=w.color;
     ph.innerHTML=w.image
-      ?`<img src="${w.image}" alt="${w.title}" style="max-width:100%;max-height:88vh;display:block;object-fit:contain;">`
+      ?`<img src="${w.image}" alt="${w.title}" loading="lazy" decoding="async" style="max-width:100%;max-height:88vh;display:block;object-fit:contain;">`
       :`<div class="lb-placeholder-inner"><div class="lb-placeholder-title">${w.title}</div><div class="lb-placeholder-sub">${w.sub} · ${w.year}</div></div>`;
   }
   document.getElementById('lightbox').addEventListener('click',e=>{
@@ -511,23 +525,77 @@
     if(e.key==='ArrowRight') lbNav(1);
   });
 
-  /* ── 폼 ── */
-  function submitForm(){
+  /* ── 폼 오류 메시지 표시 헬퍼 ── */
+  function showFormError(html){
+    const el=document.getElementById('form-error');
+    el.innerHTML=html;
+    el.style.display='block';
+  }
+  function clearFormError(){
+    const el=document.getElementById('form-error');
+    el.innerHTML='';
+    el.style.display='none';
+  }
+
+  /* ── 폼 (Formspree 연동 + honeypot) ── */
+  async function submitForm(){
     const name=document.getElementById('f-name').value.trim();
     const email=document.getElementById('f-email').value.trim();
     const deadline=document.getElementById('f-deadline').value.trim();
     const message=document.getElementById('f-message').value.trim();
-    if(!name||!email||!message){alert('성함, 메일, 내용은 필수 항목입니다.');return;}
-    const to=getMailParts();
-    const subj=encodeURIComponent(`[커미션 문의] ${name}`);
-    const body=encodeURIComponent(`성함: ${name}\n답장 메일: ${email}\n납기 기한: ${deadline||'미정'}\n\n${message}`);
-    window.open(`mailto:${to}?subject=${subj}&body=${body}`);
-    document.getElementById('modal').classList.add('open');
+    const honey=document.getElementById('f-honey').value;
+
+    if(honey) return;
+    if(!name||!email||!message){
+      showFormError('성함, 메일, 내용은 필수 항목입니다.');
+      return;
+    }
+    clearFormError();
+
+    const btn=document.querySelector('.form-submit');
+    btn.disabled=true;
+    btn.textContent='전송 중...';
+
+    try{
+      const res=await fetch('https://formspree.io/f/xpqylorr',{
+        method:'POST',
+        headers:{'Accept':'application/json','Content-Type':'application/json'},
+        body:JSON.stringify({name,email,deadline:deadline||'미정',message})
+      });
+
+      if(res.ok){
+        clearFormError();
+        document.getElementById('f-name').value='';
+        document.getElementById('f-email').value='';
+        document.getElementById('f-deadline').value='';
+        document.getElementById('f-message').value='';
+        document.getElementById('modal').classList.add('open');
+      } else {
+        const data=await res.json().catch(()=>({}));
+        const errors=data.errors||[];
+        const isEmailError=errors.some(e=>e.field==='email'||e.code==='TYPE_EMAIL'||(e.message&&e.message.toLowerCase().includes('email')));
+        const isRateLimit=res.status===429;
+
+        if(isEmailError){
+          showFormError('메일 형식이 잘못되었습니다. 다시 입력해주세요.');
+        } else if(isRateLimit){
+          showFormError(`한도가 초과되었습니다. <a onclick="copyMailInline(this);return false;" href="#">메일 주소만 직접 복사</a> 링크를 이용해주세요.`);
+        } else {
+          showFormError('전송에 실패했습니다. 잠시 후 다시 이용해주세요.');
+        }
+      }
+    } catch(e){
+      showFormError('전송에 실패했습니다. 잠시 후 다시 이용해주세요.');
+    } finally {
+      btn.disabled=false;
+      btn.innerHTML=`<svg width="14" height="14" viewBox="0 0 16 16"><use href="#ic-send"/></svg> 메일 보내기`;
+    }
   }
   function closeModal(){document.getElementById('modal').classList.remove('open');}
-  function copyMail(){
+  function copyMailInline(el){
+    event.preventDefault();
     navigator.clipboard.writeText(getMailParts()).then(()=>{
-      const fb=document.getElementById('copy-feedback');
+      const fb=document.getElementById('copy-inline-feedback');
       fb.classList.add('show');
       setTimeout(()=>fb.classList.remove('show'),2000);
     });
@@ -539,36 +607,17 @@
     btn.addEventListener('click',()=>goTo(btn.dataset.target));
   });
 
-  /* ── 랜딩 스냅 (1280px 이상) ── */
-  (function(){
-    if(window.innerWidth<1280) return;
-    const landing=document.getElementById('landing');
-    const below=document.getElementById('below-landing');
-    let snapping=false;
-    window.addEventListener('wheel',e=>{
-      const rect=landing.getBoundingClientRect();
-      const inLanding=rect.top<=1&&rect.bottom>10;
-      if(inLanding&&e.deltaY>30){
-        e.preventDefault();
-        if(snapping) return;
-        snapping=true;
-        below.scrollIntoView({behavior:'smooth'});
-        setTimeout(()=>{snapping=false;},900);
-      }
-    },{passive:false});
-  })();
-
   /* ── IntersectionObserver — 앵커 하이라이트 ── */
   const observer=new IntersectionObserver(entries=>{
     entries.forEach(entry=>{
       if(entry.isIntersecting){
-        document.querySelectorAll('.nav-anchor').forEach(b=>b.classList.remove('active'));
+        document.querySelectorAll('.nav-anchor:not(.nav-title)').forEach(b=>b.classList.remove('active'));
         const a=document.querySelector(`.nav-anchor[data-target="${entry.target.id}"]`);
         if(a) a.classList.add('active');
       }
     });
   },{threshold:0.3});
-  ['landing','gallery','contact'].forEach(id=>{
+  ['gallery','contact'].forEach(id=>{
     const el=document.getElementById(id);
     if(el) observer.observe(el);
   });

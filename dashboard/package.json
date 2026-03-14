@@ -1,0 +1,10 @@
+{
+  "name": "pixelpusher-dashboard",
+  "version": "1.0.0",
+  "description": "PixelPusher 포트폴리오 관리 대시보드",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}
