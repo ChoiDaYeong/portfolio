@@ -34,39 +34,38 @@
     .page-wrap{padding-top:var(--nav-h);}
 
     /* ── LANDING ── */
-    #landing{min-height:calc(100vh - var(--nav-h));display:grid;grid-template-columns:repeat(12,minmax(0,1fr));overflow:hidden;border-bottom:0.5px solid var(--border);background:var(--bg);}
-    .landing-info{grid-column:span 3;min-width:0;display:flex;align-items:flex-end;padding:32px 32px 52px;border-right:0.5px solid var(--border);}
-    .slide-content{width:100%;}
-    .slide-logo{display:block;width:auto;height:auto;max-width:250px;margin-bottom:20px;}
+    #landing{height:calc(100vh - var(--nav-h));position:relative;overflow:hidden;border-bottom:0.5px solid var(--border);}
+    .carousel-slides{position:absolute;inset:0;}
+    .carousel-slide{position:absolute;inset:0;opacity:0;transition:opacity 0.3s ease;pointer-events:none;}
+    .carousel-slide.active{opacity:1;}
+    .slide-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+    .slide-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(248,247,244,0.94) 0%,rgba(248,247,244,0.35) 55%,transparent 100%);}
+    .slide-fixed{position:absolute;inset:0;display:flex;align-items:flex-end;padding:0 32px 52px;z-index:5;pointer-events:none;}
+    .slide-content{pointer-events:auto;}
+    .slide-logo{display:block;height:150px;width:auto;margin-bottom:20px;}
     .slide-eyebrow{font-size:0.65em;letter-spacing:0.2em;color:var(--accent-dark);margin-bottom:28px;display:block;text-transform:uppercase;}
     .landing-ctas{display:flex;flex-direction:column;gap:14px;}
     .cta-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
     .cta-row-label{font-size:0.65em;letter-spacing:0.18em;color:var(--muted);min-width:48px;text-transform:uppercase;}
     .cta-divider{width:100%;height:0.5px;background:var(--border);}
-    .cta-btn{font-size:0.8em;font-weight:500;letter-spacing:0;padding:12px 28px;border:0.5px solid;cursor:pointer;font-family:var(--f);transition:border-color 0.3s,background-color 0.6s,color 0.3s;text-decoration:none;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
+    .cta-btn{font-size:0.75em;font-weight:500;letter-spacing:0;padding:9px 20px;border:0.5px solid;cursor:pointer;font-family:var(--f);transition:all 0.2s;text-decoration:none;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
     .cta-primary{border-color:var(--accent-dark);color:var(--accent-dark);background:none;}
     .cta-primary:hover{background:var(--accent);border-color:var(--accent);color:var(--bg);}
     .cta-secondary{border-color:var(--border);color:var(--muted);background:none;}
-    .cta-secondary:hover{background:var(--accent);border-color:var(--accent);color:var(--bg);}
-    .cta-ghost{border-color:var(--border);color:var(--muted);background:none;}
-    .cta-ghost:hover{background:var(--accent);border-color:var(--accent);color:var(--bg);}
+    .cta-secondary:hover{border-color:var(--accent);color:var(--accent-dark);}
+    .cta-ghost{border-color:var(--border);color:var(--muted);background:none;font-size:0.7em;padding:7px 14px;}
+    .cta-ghost:hover{border-color:var(--accent);color:var(--accent-dark);}
     .cta-btn svg{width:14px;height:14px;flex-shrink:0;}
     .links-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
-    #landing-links .sns-btn,#landing-links .cta-btn{min-width:48%;justify-content:center;}
-    #contact-links .links-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));align-items:stretch;}
-    #contact-links .sns-btn,#contact-links .cta-btn{width:100%;min-width:0;justify-content:center;padding:12px 0;}
-    .sns-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:12px 28px;border:0.5px solid var(--border);background:none;cursor:pointer;text-decoration:none;transition:border-color 0.3s,background-color 0.6s,color 0.3s;font-family:var(--f);font-size:0.8em;font-weight:500;color:var(--muted);}
-    .sns-btn svg{width:14px;height:14px;fill:currentColor;transition:fill 0.2s;flex-shrink:0;}
+    .sns-btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:7px 14px;border:0.5px solid var(--border);background:none;cursor:pointer;text-decoration:none;transition:border-color 0.2s,background 0.2s;font-family:var(--f);font-size:0.7em;font-weight:500;color:var(--muted);}
+    .sns-btn svg{width:14px;height:14px;fill:var(--muted);transition:fill 0.2s;flex-shrink:0;}
     .sns-label{white-space:nowrap;}
-    .sns-btn:hover{background:var(--accent);border-color:var(--accent);color:var(--bg);}
-    .landing-gallery{grid-column:span 9;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));gap:1px;min-height:calc(100vh - var(--nav-h));background:var(--border);}
-    .landing-gallery-item{position:relative;min-width:0;min-height:0;overflow:hidden;border:0;background:var(--bg2);cursor:pointer;font-family:var(--f);color:var(--text);}
-    .landing-gallery-item img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;transition:transform 0.45s ease;}
-    .landing-gallery-item:hover img{transform:scale(1.04);}
-    .landing-gallery-caption{position:absolute;left:0;right:0;bottom:0;padding:18px 18px 16px;background:linear-gradient(to top,rgba(248,247,244,0.9),rgba(248,247,244,0));text-align:left;opacity:0;transform:translateY(6px);transition:opacity 0.22s,transform 0.22s;}
-    .landing-gallery-item:hover .landing-gallery-caption{opacity:1;transform:translateY(0);}
-    .landing-gallery-title{display:block;font-weight:900;font-size:0.95em;line-height:1.25;color:var(--text);}
-    .landing-gallery-sub{display:block;font-size:0.72em;color:var(--muted);margin-top:3px;line-height:1.35;}
+    .sns-btn:hover{border-color:var(--accent);background:rgba(117,214,166,0.08);color:var(--accent-dark);}
+    .sns-btn:hover svg{fill:var(--accent-dark);}
+    .carousel-dots{position:absolute;bottom:20px;right:32px;display:flex;gap:6px;z-index:10;}
+    .carousel-dot{width:20px;height:2px;background:var(--border);cursor:pointer;transition:background 0.3s,width 0.3s;border:none;}
+    .carousel-dot.active{background:var(--accent);width:32px;}
+    .carousel-progress{position:absolute;bottom:0;left:0;height:2px;background:var(--accent);width:0%;transition:width linear;z-index:10;}
 
     /* ── EVENTS ── */
     #events{border-bottom:0.5px solid var(--border);}
@@ -87,9 +86,9 @@
     .event-field-value{font-size:0.92em;color:var(--text);line-height:1.5;}
     .event-note{grid-column:1/-1;color:var(--muted);}
     .event-actions{display:flex;gap:8px;flex-wrap:wrap;}
-    .event-sale-btn{font-family:var(--f);font-weight:500;font-size:0.8em;letter-spacing:0.1em;padding:12px 28px;border:0.5px solid;background:none;display:inline-flex;align-items:center;gap:7px;}
+    .event-sale-btn{font-family:var(--f);font-weight:500;font-size:0.85em;letter-spacing:0.1em;padding:12px 28px;border:0.5px solid;background:none;display:inline-flex;align-items:center;gap:7px;}
     .event-sale-btn svg{width:14px;height:14px;}
-    .event-sale-btn.available{border-color:var(--accent-dark);color:var(--accent-dark);cursor:pointer;transition:border-color 0.3s,background-color 0.6s,color 0.3s;}
+    .event-sale-btn.available{border-color:var(--accent-dark);color:var(--accent-dark);cursor:pointer;transition:all 0.2s;}
     .event-sale-btn.available:hover{background:var(--accent);border-color:var(--accent);color:var(--bg);}
     .event-sale-btn.disabled{border-color:var(--border);color:var(--muted);cursor:default;pointer-events:none;}
     .event-preview-btn{width:100%;height:100%;min-height:232px;display:block;position:relative;border:0;background:var(--bg2);cursor:pointer;overflow:hidden;font-family:var(--f);color:var(--text);}
@@ -107,16 +106,36 @@
     .next-event-title{font-weight:900;font-size:0.9em;color:var(--text);line-height:1.35;}
     .next-event-place{font-size:0.76em;color:var(--muted);margin-top:2px;}
     .next-event-empty{height:170px;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:0.95em;}
-    /* SECTION */
+
+    /* ── GALLERY ── */
+    #gallery{border-bottom:0.5px solid var(--border);}
     .section-header{padding:40px 32px 20px;display:flex;align-items:flex-end;justify-content:space-between;border-bottom:0.5px solid var(--border);}
     .section-header h2{font-weight:900;font-size:2em;color:var(--accent);text-transform:uppercase;letter-spacing:0.04em;}
+    .filter-bar{display:flex;gap:6px;}
+    .filter-btn{font-size:0.75em;font-weight:500;letter-spacing:0.08em;padding:5px 14px;border:0.5px solid var(--border);background:none;color:var(--muted);cursor:pointer;font-family:var(--f);transition:all 0.2s;border-radius:2px;}
+    .filter-btn:hover{color:var(--text);border-color:var(--accent);}
+    .filter-btn.active{color:var(--accent-dark);border-color:var(--accent);}
+    .gallery-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);}
+    @media(max-width:1280px){.gallery-grid{grid-template-columns:repeat(3,1fr);}}
+    @media(max-width:640px){.gallery-grid{grid-template-columns:repeat(2,1fr);}}
+    .gallery-item{background:var(--bg2);aspect-ratio:3/4;position:relative;cursor:pointer;overflow:hidden;contain:layout style;}
+    .gallery-item:hover .g-overlay{opacity:1;}
+    .gallery-item:hover .g-thumb-img{transform:scale(1.04);}
+    .g-thumb-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform 0.4s ease;display:block;}
+    .g-thumb-color{position:absolute;inset:0;}
+    .g-thumb-fallback{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;}
+    .g-label{font-size:0.75em;color:var(--muted);font-weight:500;line-height:1.4;}
+    .g-title{font-weight:900;font-size:1em;color:var(--text);display:block;margin-bottom:2px;}
+    .g-overlay{position:absolute;inset:0;background:rgba(248,247,244,0.88);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;opacity:0;transition:opacity 0.22s;}
+    .g-overlay-title{font-weight:900;font-size:0.9em;color:var(--text);}
+    .g-overlay-sub{font-size:0.75em;color:var(--muted);font-weight:500;letter-spacing:0.05em;}
     .g-zoom-icon{width:36px;height:36px;display:flex;align-items:center;justify-content:center;margin-top:2px;}
 
     /* ── LIGHTBOX ── */
     .lightbox{position:fixed;inset:0;z-index:999;background:rgba(248,247,244,0.97);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.25s;}
     .lightbox.open{opacity:1;pointer-events:auto;}
     .lb-inner{display:flex;align-items:stretch;max-width:88vw;max-height:88vh;position:relative;border:0.5px solid var(--border);}
-    .lb-img-wrap{width:auto;max-height:88vh;display:flex;align-items:center;justify-content:center;background:var(--bg2);overflow:hidden;min-width:220px;min-height:280px;}
+    .lb-img-wrap{width:56vw;max-height:88vh;display:flex;align-items:center;justify-content:center;background:var(--bg2);overflow:hidden;min-width:220px;min-height:280px;}
     .lb-img-wrap img{max-width:100%;max-height:88vh;display:block;object-fit:contain;}
     .lb-placeholder{width:100%;height:100%;min-height:340px;display:flex;align-items:center;justify-content:center;}
     .lb-placeholder-inner{text-align:center;}
@@ -126,17 +145,15 @@
     .lb-tag{font-size:0.65em;letter-spacing:0.18em;color:var(--accent-dark);margin-bottom:12px;text-transform:uppercase;}
     .lb-title{font-weight:900;font-size:1.3em;color:var(--accent);margin-bottom:4px;line-height:1.2;}
     .lb-sub{font-size:0.85em;color:var(--muted);margin-bottom:14px;line-height:1.4;}
-    .lb-shop-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.8em;font-weight:500;letter-spacing:0.06em;padding:12px 28px;border:0.5px solid var(--accent-dark);color:var(--accent-dark);background:none;cursor:pointer;font-family:var(--f);transition:border-color 0.3s,background-color 0.6s,color 0.3s;text-decoration:none;margin-bottom:14px;}
+    .lb-shop-btn{display:inline-flex;align-items:center;gap:6px;font-size:0.78em;font-weight:500;letter-spacing:0.06em;padding:8px 16px;border:0.5px solid var(--accent-dark);color:var(--accent-dark);background:none;cursor:pointer;font-family:var(--f);transition:all 0.2s;text-decoration:none;margin-bottom:14px;}
     .lb-shop-btn:hover{background:var(--accent);border-color:var(--accent);color:var(--bg);}
     .lb-shop-btn svg{width:14px;height:14px;}
     .lb-desc{font-size:0.9em;color:var(--text);line-height:1.6;margin-bottom:20px;}
     .lb-year{font-size:0.8em;color:var(--muted);padding-top:14px;border-top:0.5px solid var(--border);}
     .lb-close{position:absolute;top:12px;right:14px;font-size:1.1em;color:var(--muted);cursor:pointer;background:none;border:none;font-family:var(--f);font-weight:500;transition:color 0.2s;line-height:1;z-index:10;}
     .lb-close:hover{color:var(--text);}
-    .lb-nav{position:fixed;top:50%;transform:translateY(-50%);font-size:1em;color:var(--muted);cursor:pointer;background:transparent;border:0;font-family:var(--f);padding:12px 14px;transition:color 0.2s;z-index:1000;display:flex;align-items:center;justify-content:center;}
-    .lb-nav svg{width:36px;height:36px;display:block;}
-    .lb-prev svg{transform:rotate(180deg);}
-    .lb-nav:hover{color:var(--accent-dark);}
+    .lb-nav{position:fixed;top:50%;transform:translateY(-50%);font-size:1em;color:var(--muted);cursor:pointer;background:var(--bg);border:0.5px solid var(--border);font-family:var(--f);padding:12px 14px;transition:all 0.2s;z-index:1000;}
+    .lb-nav:hover{color:var(--accent-dark);border-color:var(--accent);}
     .lb-prev{left:16px;}.lb-next{right:16px;}
 
     /* ── CONTACT ── */
@@ -156,7 +173,7 @@
     .form-input:focus,.form-textarea:focus{border-color:var(--accent);}
     .form-textarea{resize:vertical;min-height:90px;}
     .form-actions{display:flex;gap:10px;align-items:center;margin-top:4px;}
-    .form-submit{font-family:var(--f);font-weight:500;font-size:0.8em;letter-spacing:0.1em;padding:12px 28px;border:0.5px solid var(--accent-dark);color:var(--accent-dark);background:none;cursor:pointer;transition:border-color 0.3s,background-color 0.6s,color 0.3s;display:inline-flex;align-items:center;gap:7px;}
+    .form-submit{font-family:var(--f);font-weight:500;font-size:0.85em;letter-spacing:0.1em;padding:12px 28px;border:0.5px solid var(--accent-dark);color:var(--accent-dark);background:none;cursor:pointer;transition:all 0.2s;display:inline-flex;align-items:center;gap:7px;}
     .form-submit svg{width:14px;height:14px;}
     .form-submit:hover{background:var(--accent);border-color:var(--accent);color:var(--bg);}
     .form-error{margin-top:12px;font-size:0.88em;color:#c0392b;line-height:1.5;}
@@ -171,29 +188,20 @@
     .modal-icon svg{fill:var(--accent-dark);}
     .modal-title{font-weight:900;font-size:1.1em;color:var(--accent);margin-bottom:10px;}
     .modal-msg{font-size:0.95em;color:var(--text);line-height:1.6;margin-bottom:24px;}
-    .modal-close{font-family:var(--f);font-weight:500;font-size:0.8em;letter-spacing:0.08em;padding:12px 28px;border:0.5px solid var(--border);background:none;color:var(--muted);cursor:pointer;transition:border-color 0.3s,background-color 0.6s,color 0.3s;}
-    .modal-close:hover{background:var(--accent);border-color:var(--accent);color:var(--bg);}
+    .modal-close{font-family:var(--f);font-weight:500;font-size:0.8em;letter-spacing:0.08em;padding:9px 24px;border:0.5px solid var(--border);background:none;color:var(--muted);cursor:pointer;transition:all 0.2s;}
+    .modal-close:hover{border-color:var(--accent);color:var(--accent-dark);}
 
     /* ── FOOTER ── */
     footer{padding:22px 32px;border-top:0.5px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
     footer span{font-size:0.75em;color:var(--muted);font-weight:500;letter-spacing:0.04em;}
 
-    @media(max-width:1024px){
-      #landing-links .sns-btn,#landing-links .cta-btn{width:100%;min-width:100%;}
-    }
-
     /* ── MOBILE ── */
     @media(max-width:640px){
       nav{padding:0 16px;}
       .nav-anchor{padding:0 12px;font-size:0.7em;}
-      #landing{min-height:calc(100svh - var(--nav-h));display:flex;flex-direction:column;}
-      .landing-info{min-height:42svh;padding:24px 20px 28px;border-right:0;border-bottom:0.5px solid var(--border);}
-      .slide-logo{width:auto;height:auto;max-width:180px;}
-      .landing-gallery{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:repeat(2,minmax(0,1fr));min-height:58svh;}
-      .landing-gallery-item:nth-child(n+5){display:none;}
-      .landing-gallery-caption{opacity:1;transform:none;padding:14px 12px 12px;}
-      .landing-gallery-title{font-size:0.82em;}
-      .landing-gallery-sub{display:none;}
+      #landing{height:calc(100svh - var(--nav-h));}
+      .slide-fixed{padding:0 20px 44px;}
+      .slide-logo{height:90px;}
       .section-header{flex-direction:column;align-items:flex-start;gap:12px;padding:28px 20px 16px;}
       .events-wrap{padding:0 20px 32px;}
       .events-board,.events-board.has-next{grid-template-columns:1fr;}
@@ -209,6 +217,8 @@
       .event-preview-overlay .g-zoom-icon{align-self:end;justify-self:end;margin-top:0;}
       .next-event-panel{border-left:0;border-top:1px solid var(--border);}
       .next-event-row{grid-template-columns:78px 1fr;}
+      .filter-bar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;width:100%;}
+      .filter-btn{width:100%;min-height:32px;text-align:center;}
       .comm-center{padding:32px 20px;}
       .lb-inner{flex-direction:column;max-width:96vw;}
       .lb-img-wrap{width:96vw;min-width:unset;min-height:220px;}
@@ -217,7 +227,7 @@
       footer{flex-direction:column;gap:6px;align-items:flex-start;padding:20px;}
       .links-row{flex-direction:column;align-items:stretch;gap:8px;}
       .links-row .cta-row-label{margin-bottom:2px;}
-      .sns-btn,.cta-btn.cta-ghost,.cta-btn.cta-secondary{display:flex;width:100%;justify-content:center;padding:12px 28px;font-size:0.8em;}
+      .sns-btn,.cta-btn.cta-ghost,.cta-btn.cta-secondary{display:flex;width:100%;justify-content:center;padding:11px 16px;font-size:0.84em;}
       .sns-btn svg{width:16px;height:16px;}
     }
   </style>
@@ -227,6 +237,10 @@
 <!-- ── SVG 심볼 ── -->
 <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
   <!-- 아이콘 -->
+  <symbol id="ic-gallery" viewBox="0 0 16 16">
+    <path fill="currentColor" d="M13 6c1.6569 0 3-1.34315 3-3s-1.3431-3-3-3-3 1.34315-3 3 1.3431 3 3 3Z"/>
+    <path fill="currentColor" d="M0 16h16v-5l-3-3-3 3-5-5-5 5v5Z"/>
+  </symbol>
   <symbol id="ic-mail" viewBox="0 0 16 16">
     <path fill="currentColor" d="M0 3.12131V15h16V3.12133L8.00001 11.1213 0 3.12131Z"/>
     <path fill="currentColor" d="M16 1H0.0000128746L8.00001 9 16 1Z"/>
@@ -246,9 +260,6 @@
   <symbol id="ic-up-right-circle" viewBox="0 0 16 16">
     <path fill="currentColor" fill-rule="evenodd" d="M2.34315 2.34315c-3.124198 3.12419-3.124199 8.18955 0 11.31375 3.12419 3.1241 8.18955 3.1241 11.31375 0 3.1241-3.1242 3.1241-8.18956 0-11.31375-3.1242-3.124199-8.18956-3.124199-11.31375 0Zm8.83895 2.47491v5.65684L9.76786 9.0607l-2.82843 2.8284L4.111 9.0607l2.82843-2.82843-1.41421-1.41421h5.65688Z" clip-rule="evenodd"/>
   </symbol>
-  <symbol id="ic-right-circle" viewBox="0 0 16 16">
-    <path fill="currentColor" fill-rule="evenodd" d="M8 0C3.58172 0 0 3.58172 0 8c0 4.4183 3.58172 8 8 8 4.4183 0 8-3.5817 8-8 0-4.41828-3.5817-8-8-8Zm4.5 8-4 4v-2h-4V6h4V4l4 4Z" clip-rule="evenodd"/>
-  </symbol>
   <!-- PP 로고 -->
   <symbol id="pp-logo" viewBox="0 0 175 80">
     <path fill="#75d6a6" d="M175,79.35h-10.11l-2.99-7.26c-.82.13-1.74.17-2.69.17h-1.48v7.13h-8.72v-35.87h8.94c11.81,0,16.19,6.91,16.19,14.35,0,4.22-1.43,8.26-4.56,10.96l5.43,10.52ZM157.72,63.74h1.74c4.04,0,6.12-2.52,6.12-5.87s-2.13-5.83-6.12-5.83h-1.74v11.7Z"/>
@@ -267,9 +278,10 @@
 
 <!-- ── NAV ── -->
 <nav>
-    <button class="nav-anchor nav-title" data-target="landing">PixelPusher</button>
+  <button class="nav-anchor nav-title" data-target="landing">PixelPusher</button>
   <div class="nav-anchors">
     <button class="nav-anchor" data-target="events">Events</button>
+    <button class="nav-anchor" data-target="gallery">Gallery</button>
     <button class="nav-anchor" data-target="contact">Contact</button>
   </div>
 </nav>
@@ -278,7 +290,8 @@
 
   <!-- ── LANDING ── -->
   <section id="landing">
-    <div class="landing-info">
+    <div class="carousel-slides" id="carousel-slides"></div>
+    <div class="slide-fixed">
       <div class="slide-content">
         <svg class="slide-logo" viewBox="0 0 175 80"><use href="#pp-logo"/></svg>
         <div class="landing-ctas">
@@ -286,7 +299,8 @@
         </div>
       </div>
     </div>
-    <div class="landing-gallery" id="landing-gallery"></div>
+    <div class="carousel-dots" id="carousel-dots"></div>
+    <div class="carousel-progress" id="carousel-progress"></div>
   </section>
 
   <!-- ── BELOW LANDING ── -->
@@ -300,6 +314,20 @@
       <div class="events-wrap">
         <div class="events-board" id="events-board"></div>
       </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery" style="border-bottom:0.5px solid var(--border);">
+      <div class="section-header">
+        <h2>GALLERY</h2>
+        <div class="filter-bar">
+          <button class="filter-btn active" onclick="filterGallery('all',this)">전체</button>
+          <button class="filter-btn" onclick="filterGallery('illustration',this)">일러스트</button>
+          <button class="filter-btn" onclick="filterGallery('uiux',this)">UI/UX</button>
+          <button class="filter-btn" onclick="filterGallery('graphic',this)">그래픽 디자인</button>
+        </div>
+      </div>
+      <div class="gallery-grid" id="gallery-grid"></div>
     </section>
 
     <!-- CONTACT -->
@@ -317,22 +345,22 @@
         <span class="copy-inline-feedback" id="copy-inline-feedback">복사 완료!</span>
         </p>
         <div class="contact-form">
-          <!-- honeypot: bot trap field -->
+          <!-- honeypot: 봇 차단용 숨김 필드 -->
           <input type="text" id="f-honey" name="_gotcha" style="display:none;" tabindex="-1" autocomplete="off">
           <div class="form-row">
-            <label class="form-label">성함 / 보내시는 분의 이름</label>
+            <label class="form-label">성함 — 보내시는 분의 이름</label>
             <input class="form-input" id="f-name" type="text" placeholder="개인 또는 회사명을 작성해주세요.">
           </div>
           <div class="form-row">
-            <label class="form-label">메일 / 답장을 받을 메일 주소</label>
+            <label class="form-label">메일 — 답장을 받으실 메일 주소</label>
             <input class="form-input" id="f-email" type="email" placeholder="example@email.com">
           </div>
           <div class="form-row">
-            <label class="form-label">납기 기한 / 마감 기한이 정해져 있다면 작성해주세요</label>
+            <label class="form-label">납기 기한 — 마감 기한이 정해져 있다면 작성해주세요</label>
             <input class="form-input" id="f-deadline" type="text" placeholder="없을 경우 비워주세요.">
           </div>
           <div class="form-row">
-            <label class="form-label">내용 / 어떤 프로젝트인지 간략하게 설명해주세요</label>
+            <label class="form-label">내용 — 어떤 프로젝트인지 간략하게 설명해주세요</label>
             <textarea class="form-textarea" id="f-message" placeholder="작업 종류, 사용처, 예산 범위가 정해져 있다면 함께 알려주세요."></textarea>
           </div>
           <div class="form-actions">
@@ -357,9 +385,9 @@
 
 <!-- ── LIGHTBOX ── -->
 <div class="lightbox" id="lightbox">
-  <button class="lb-close" onclick="closeLightbox()">?</button>
-  <button class="lb-nav lb-prev" onclick="lbNav(-1)" aria-label="Previous work"><svg viewBox="0 0 16 16"><use href="#ic-right-circle"/></svg></button>
-  <button class="lb-nav lb-next" onclick="lbNav(1)" aria-label="Next work"><svg viewBox="0 0 16 16"><use href="#ic-right-circle"/></svg></button>
+  <button class="lb-close" onclick="closeLightbox()">✕</button>
+  <button class="lb-nav lb-prev" onclick="lbNav(-1)">←</button>
+  <button class="lb-nav lb-next" onclick="lbNav(1)">→</button>
   <div class="lb-inner">
     <div class="lb-img-wrap">
       <div class="lb-placeholder" id="lb-placeholder">
@@ -405,6 +433,7 @@
 
   function buildLinksHTML(showMailBtn=true){
     return `<div class="links-row">
+      <span class="cta-row-label">Links</span>
       <a class="sns-btn" href="https://www.instagram.com/pixelpu5her/" target="_blank">${IG_SVG}<span class="sns-label">Instagram</span></a>
       <a class="sns-btn" href="https://x.com/pixelpu5her" target="_blank">${TW_SVG}<span class="sns-label">X (Twitter)</span></a>
       <a class="cta-btn cta-ghost" href="https://witchform.com/p/IRNLUtpSyy" target="_blank">${ic('ic-cart')} WitchForm</a>
@@ -414,90 +443,100 @@
   }
 
   /* ── 캐러셀 ── */
-const events=[
+  const slideData=[
+    {image:"img/thumb_111.webp",color:"#ede8e0"},
+    {image:"",color:"#e8e4ec"},
+    {image:"",color:"#e4eaee"},
+  ];
+
+  const events=[
     {
-      title:"문구전 2026 여름",
-      startDate:"2026-07-04",
-      endDate:"2026-07-05",
-      titleUrl:"",
-      venue:"양재 aT센터",
-      booth:"추후 공지",
-      items:"씰 스티커, 아크릴 키링",
-      salesStatusText:"행사 참가 후 통판 예정",
+      title:"서울 코믹월드",
+      startDate:"2026-06-15",
+      endDate:"2026-06-16",
+      venue:"KINTEX",
+      booth:"A-12",
+      items:"신간 / 아크릴 키링 / 엽서 세트",
+      salesStatusText:"통판 진행 중 (~26. 7. 31.)",
       shopButtonLabel:"구매하기",
-      shopAvailable:false,
-      shopUrl:"",
-      previewImage:"img/01.webp",
+      shopAvailable:true,
+      previewImage:"img/thumb_112.webp",
       infoImage:"img/thumb_112.webp",
-      thumbnailUrl:"",
       note:"신간, 굿즈, 현장 재고를 안내합니다.",
-      noticeUrl:"https://www.instagram.com/pixelpu5her/"
+      noticeUrl:"https://www.instagram.com/pixelpu5her/",
+      shopUrl:""
     },
     {
       title:"일러스타 페스",
       startDate:"2026-02-21",
       endDate:"2026-02-22",
-      titleUrl:"",
       venue:"SETEC",
       booth:"B-34",
       items:"오리지널 굿즈 / 엽서 세트",
       salesStatusText:"행사 종료",
       shopButtonLabel:"통판 예정",
-      shopAvailable:false,
-      shopUrl:"",
       previewImage:"img/thumb_111.webp",
       infoImage:"img/thumb_111.webp",
-      thumbnailUrl:"",
       note:"오리지널 일러스트 굿즈와 엽서 세트를 배포했습니다.",
-      noticeUrl:""
+      noticeUrl:"",
+      shopUrl:""
     },
     {
       title:"서울 코믹월드",
       startDate:"2025-12-20",
       endDate:"2025-12-21",
-      titleUrl:"",
       venue:"KINTEX",
       booth:"C-18",
       items:"연말 신작 굿즈 / 현장 한정 배포",
       salesStatusText:"행사 종료",
       shopButtonLabel:"통판 예정",
-      shopAvailable:false,
-      shopUrl:"",
       previewImage:"img/thumb_112.webp",
       infoImage:"img/thumb_112.webp",
-      thumbnailUrl:"",
       note:"연말 신작 굿즈와 현장 한정 배포를 진행했습니다.",
-      noticeUrl:""
-    },
+      noticeUrl:"",
+      shopUrl:""
+    }
   ];
-function initLanding(){
+
+  let currentSlide=0, carouselTimer;
+  const SLIDE_DURATION=8000;
+
+  function buildCarousel(){
+    const cont=document.getElementById('carousel-slides');
+    const dotsEl=document.getElementById('carousel-dots');
+    slideData.forEach((s,i)=>{
+      const el=document.createElement('div');
+      el.className='carousel-slide'+(i===0?' active':'');
+      const bgStyle=s.image
+        ?`background-color:${s.color};background-image:url(${s.image});background-size:cover;background-position:center;`
+        :`background-color:${s.color};`;
+      el.innerHTML=`<div class="slide-bg" style="${bgStyle}"></div>`;
+      cont.appendChild(el);
+      const dot=document.createElement('button');
+      dot.className='carousel-dot'+(i===0?' active':'');
+      dot.addEventListener('click',()=>goToSlide(i));
+      dotsEl.appendChild(dot);
+    });
     document.getElementById('landing-links').innerHTML=buildLinksHTML(true);
     document.getElementById('contact-links').innerHTML=`<div style="margin-top:36px;padding-top:28px;border-top:0.5px solid var(--border);">${buildLinksHTML(false)}</div>`;
-    renderLandingGallery();
   }
 
-  function renderLandingGallery(){
-    const wrap=document.getElementById('landing-gallery');
-    if(!wrap) return;
-    const featured=works
-      .map((work,index)=>({work,index}))
-      .filter(({work})=>work.thumb||work.image)
-      .slice(0,8);
-    wrap.innerHTML=featured.map(({work,index})=>{
-      const img=work.thumb||work.image;
-      return `<button class="landing-gallery-item" type="button" onclick="openLandingWork(${index})">
-        <img src="${img}" alt="${work.title}" loading="eager">
-        <span class="landing-gallery-caption">
-          <span class="landing-gallery-title">${work.title}</span>
-          <span class="landing-gallery-sub">${work.sub||work.year||''}</span>
-        </span>
-      </button>`;
-    }).join('');
+  function goToSlide(idx){
+    const allS=document.querySelectorAll('.carousel-slide');
+    const allD=document.querySelectorAll('.carousel-dot');
+    allS[currentSlide].classList.remove('active');
+    allD[currentSlide].classList.remove('active');
+    currentSlide=(idx+slideData.length)%slideData.length;
+    allS[currentSlide].classList.add('active');
+    allD[currentSlide].classList.add('active');
+    resetProgress();
   }
-
-  function openLandingWork(idx){
-    filteredWorks=[...works];
-    openLightbox(idx);
+  function resetProgress(){
+    clearInterval(carouselTimer);
+    const bar=document.getElementById('carousel-progress');
+    bar.style.transition='none'; bar.style.width='0%';
+    setTimeout(()=>{bar.style.transition=`width ${SLIDE_DURATION}ms linear`;bar.style.width='100%';},30);
+    carouselTimer=setInterval(()=>goToSlide(currentSlide+1),SLIDE_DURATION);
   }
 
   /* ── 갤러리 데이터 ──
@@ -636,35 +675,59 @@ function initLanding(){
   }
 
   const works=[
-    {title:"Matilda with Cake",sub:"Hope your day is...",year:"2026",type:"illustration",color:"#e8e4ec",
-     thumb:"img/01.webp",image:"img/01.webp",tags:[],shopUrl:"",
-     desc:"2026 코미버스 앤솔로지 Vol.01 수록 / 2026 문구전 여름 엽서 증정용 일러스트"},
-    {title:"Matilda & Nikita",sub:"CLUB 404",year:"2024",type:"illustration",color:"#e4eeea",
-     thumb:"img/08.webp",image:"img/08.webp",tags:[],shopUrl:"",
-     desc:"Original Character Design from CLUB 404"},
-    {title:"Mara - Style Study",sub:"Original Concept",year:"2025",type:"illustration",color:"#eeeae4",
-     thumb:"img/07.webp",image:"img/07.webp",tags:[],shopUrl:"",
-     desc:"Artwork Style Study"},
-    {title:"Winter Holiday",sub:"Original Concept Design",year:"2022",type:"illustration",color:"#eee4e4",
-     thumb:"img/04.webp",image:"img/04.webp",tags:[],shopUrl:"",
-     desc:"Winter Concept Object Design"},
+    {title:"Matilda & Nikita",sub:"GakuinCity Original",year:"2025",type:"illustration",color:"#e8e4ec",
+     thumb:"",image:"",tags:[],shopUrl:"",
+     desc:"GakuinCity 세계관의 오리지널 캐릭터 마틸다와 니키타. 두 인물의 대비되는 성격을 의상과 포즈로 표현했습니다."},
     {title:"High School Girl",sub:"Original Concept",year:"2024",type:"illustration",color:"#ede8e0",
-     thumb:"img/05.webp",image:"img/05.webp",tags:[],shopUrl:"",
+     thumb:"",image:"",tags:["able-shop"],shopUrl:"https://witchform.com/p/IRNLUtpSyy",
      desc:"학원물 장르를 배경으로 한 오리지널 콘셉트 디자인."},
-    {title:"Mara",sub:"Original Concept",year:"2025",type:"illustration",color:"#e4eaee",
-     thumb:"img/06.webp",image:"img/06.webp",tags:[],shopUrl:"",
-     desc:"Original Concept Design : Mara"},
-    {title:"Mara",sub:"Original Concept Design",year:"2020",type:"illustration",color:"#e4e8ee",
-     thumb:"img/03.webp",image:"img/03.webp",tags:[],shopUrl:"",
-     desc:"Original Concept Design : Mara"},
-    {title:"War Mage",sub:"Original Concept Design",year:"2019",type:"illustration",color:"#ededed",
-     thumb:"img/02.webp",image:"img/02.webp",tags:[],shopUrl:"",
-     desc:"Original Concept Design : Witchell"},
+    {title:"C&C",sub:"Blue Archive",year:"2024",type:"illustration",color:"#e4eaee",
+     thumb:"",image:"",tags:[],shopUrl:"",desc:"블루 아카이브의 C&C 팬아트."},
+    {title:"Hubuki",sub:"Blue Archive",year:"2024",type:"illustration",color:"#eeeae4",
+     thumb:"",image:"",tags:[],shopUrl:"",desc:"블루 아카이브 후부키 팬아트."},
+    {title:"Pramanix",sub:"Arknights",year:"2024",type:"illustration",color:"#e4eeea",
+     thumb:"",image:"",tags:[],shopUrl:"",desc:"명일방주 프라마닉스 팬아트."},
+    {title:"Hakos Baelz",sub:"Hololive EN",year:"2022",type:"illustration",color:"#eee4e4",
+     thumb:"",image:"",tags:[],shopUrl:"",desc:"홀로라이브 EN Hakos Baelz 팬아트."},
+    {title:"Bing Hayu",sub:"LUV DIA",year:"2022",type:"illustration",color:"#e4e8ee",
+     thumb:"",image:"",tags:[],shopUrl:"",desc:"LUV DIA 빙하유 팬아트."},
+    {title:"Megu",sub:"Blue Archive",year:"2023",type:"illustration",color:"#eae4ee",
+     thumb:"",image:"",tags:[],shopUrl:"",desc:"블루 아카이브 메구 팬아트."},
+    {title:"War Mage",sub:"Original Concept",year:"2019",type:"illustration",color:"#eee8e4",
+     thumb:"",image:"",tags:[],shopUrl:"",desc:"전쟁 마법사 테마 오리지널 콘셉트 아트."},
+    {title:"Dessert Girl",sub:"Original Concept",year:"2022",type:"illustration",color:"#eeeae4",
+     thumb:"",image:"",tags:[],shopUrl:"",desc:"디저트 모티프 오리지널 캐릭터 디자인."},
+    {title:"Hu Tao",sub:"Genshin Impact",year:"2023",type:"illustration",color:"#eee4e8",
+     thumb:"",image:"",tags:[],shopUrl:"",desc:"원신 호두 팬아트."},
+    {title:"Shiroko",sub:"Blue Archive",year:"2023",type:"illustration",color:"#e4eeee",
+     thumb:"",image:"",tags:[],shopUrl:"",desc:"블루 아카이브 시로코 팬아트."},
   ];
 
   const ZOOM_SVG=`<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 16 16" width="28" height="28"><path fill="#3faa78" fill-rule="evenodd" d="M0 7C0 3.13401 3.13401 0.000002714 7 0c3.866 0 7 3.13401 7 7 0 1.16026-.2823 2.25459-.7819 3.2181L16 13l-3 3-2.782-2.7819C9.25457 13.7177 8.16025 14 7 14c-3.86599 0-7-3.134-7-7Zm8.00001-4h-2v3h-3v2h3v3h2V8H11V6H8.00001V3Z" clip-rule="evenodd"/></svg>`;
 
   let filteredWorks=[...works], lbIndex=0;
+
+  function renderGallery(filter){
+    filteredWorks=filter==='all'?[...works]:works.filter(w=>w.type===filter);
+    document.getElementById('gallery-grid').innerHTML=filteredWorks.map((w,i)=>`
+      <div class="gallery-item" onclick="openLightbox(${i})">
+        <div class="g-thumb-color" style="background-color:${w.color};"></div>
+        ${w.thumb?`<img class="g-thumb-img" src="${w.thumb}" alt="${w.title}" loading="lazy" decoding="async">`:''}
+        <div class="g-thumb-fallback">
+          <div class="g-label"><span class="g-title">${w.title}</span>${w.sub}<br>${w.year}</div>
+        </div>
+        <div class="g-overlay">
+          <div class="g-overlay-title">${w.title}</div>
+          <div class="g-overlay-sub">${w.sub} · ${w.year}</div>
+          <div class="g-zoom-icon">${ZOOM_SVG}</div>
+        </div>
+      </div>`).join('');
+  }
+  function filterGallery(type,btn){
+    document.querySelectorAll('.filter-btn').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    renderGallery(type);
+  }
 
   /* ── 라이트박스 ── */
   function openLightbox(idx){
@@ -800,14 +863,16 @@ function initLanding(){
       }
     });
   },{threshold:0.3});
-  ['events','contact'].forEach(id=>{
+  ['events','gallery','contact'].forEach(id=>{
     const el=document.getElementById(id);
     if(el) observer.observe(el);
   });
 
   /* ── Init ── */
-  initLanding();
+  buildCarousel();
   renderEvents();
+  resetProgress();
+  renderGallery('all');
 </script>
 </body>
 </html>
